@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ramez Sobhy Zaher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
+<style>
+:root{
+  --bg:#EEF3FB; --surface:#FFFFFF; --ink:#16233F; --muted:#5B6B8C; --brand:#3B5BDB; --brand-ink:#FFFFFF; --teal:#12A594; --line:#D6E0F2; --chart:#DCE5FA;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#0E1424;--surface:#161E36;--ink:#E8EEFC;--muted:#98A8CB;--brand:#7B93F5;--brand-ink:#0C1330;--teal:#3FD0BC;--line:#26314F;--chart:#22305A;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0E1424;--surface:#161E36;--ink:#E8EEFC;--muted:#98A8CB;--brand:#7B93F5;--brand-ink:#0C1330;--teal:#3FD0BC;--line:#26314F;--chart:#22305A;color-scheme:dark}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:"Manrope","Segoe UI",Tahoma,sans-serif;display:flex;align-items:center;justify-content:center;padding:24px}
+main{width:100%;max-width:460px;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.viz{background:var(--chart);padding:22px 24px 0}
+.viz svg{display:block;width:100%;height:auto}
+.bar{fill:var(--brand);opacity:.28;transform-origin:bottom;transform-box:fill-box;animation:grow .8s ease-out both}
+.bar.hi{opacity:.9}
+.line{fill:none;stroke:var(--teal);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.4s .4s ease-out forwards}
+.dot{fill:var(--teal)}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.bar,.line{animation:none;stroke-dashoffset:0}}
+.body{padding:28px 28px 32px}
+h1{margin:0 0 8px;font-size:1.7rem;line-height:1.2;font-weight:800}
+p{margin:0;color:var(--muted);line-height:1.7}
+.num{display:block;margin:24px 0 20px;font-size:clamp(1.9rem,8.5vw,2.5rem);font-weight:800;letter-spacing:.03em;color:var(--brand);text-decoration:none;font-variant-numeric:tabular-nums}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{display:block;text-align:center;padding:14px 12px;border-radius:12px;font:inherit;font-weight:600;text-decoration:none;border:2px solid var(--brand)}
+.btn:focus-visible,.num:focus-visible,.copy:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.call{background:var(--brand);color:var(--brand-ink)}
+.wa{background:transparent;color:var(--brand)}
+.copy{margin-top:16px;background:none;border:0;color:var(--muted);font:inherit;cursor:pointer;text-decoration:underline;padding:0}
+</style>
+</head>
+<body>
+<main>
+  <div class="viz" aria-hidden="true">
+    <svg viewBox="0 0 400 130" xmlns="http://www.w3.org/2000/svg">
+      <rect class="bar" x="20"  y="80" width="38" height="50" rx="5" style="animation-delay:.0s"/>
+      <rect class="bar" x="80"  y="62" width="38" height="68" rx="5" style="animation-delay:.1s"/>
+      <rect class="bar" x="140" y="72" width="38" height="58" rx="5" style="animation-delay:.2s"/>
+      <rect class="bar" x="200" y="48" width="38" height="82" rx="5" style="animation-delay:.3s"/>
+      <rect class="bar" x="260" y="34" width="38" height="96" rx="5" style="animation-delay:.4s"/>
+      <rect class="bar hi" x="320" y="14" width="38" height="116" rx="5" style="animation-delay:.5s"/>
+      <polyline class="line" points="39,68 99,48 159,58 219,34 279,22 339,8"/>
+      <circle class="dot" cx="339" cy="8" r="5"/>
+    </svg>
+  </div>
+  <div class="body">
+    <h1>Ramez Sobhy Zaher</h1>
+    <p>Faculty of Commerce, Ain Shams University.<br>Interested in data analysis. Open to internships and interviews.</p>
+    <a class="num" href="tel:01224929848">01224929848</a>
+    <div class="actions">
+      <a class="btn call" href="tel:01224929848">Call</a>
+      <a class="btn wa" href="https://wa.me/201224929848" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <button class="copy" id="copy" type="button">Copy number</button>
+  </div>
+</main>
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this,n='01224929848';
+  function done(){b.textContent='Number copied';setTimeout(function(){b.textContent='Copy number'},2000)}
+  try{navigator.clipboard.writeText(n).then(done,function(){b.textContent=n})}catch(e){b.textContent=n}
+});
+</script>
+</body>
+</html>
